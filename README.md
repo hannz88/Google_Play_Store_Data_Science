@@ -182,3 +182,6 @@ kruskal_effect_size(h = s, n=n, k=k)
 Kruskal-Wallis test showed that there is a significant difference among the ratings of different categories (p-value < 0, H-value = 291.97) but the effect is weak (eta-squared = 0.03).
 
 ## Sentiment analysis
+The data also comes with a dataset documenting the reviews of users for some apps. We'll go ahead and pull out the most common words for Free vs Paid apps.
+
+<img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/free_word_cloud.png" width="400"/> <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/paid_word_cloud.png" width="400"/> 
