@@ -67,8 +67,8 @@ From the violin plot, a few things could be seen:
 - More than 50% of Apps in Dating have lower than average ratings.
 
 ### What is the size strategy?
+<img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/size_strategy.png" width="425"/> <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/size_category.png" width="425"/> 
 
-![Size strategy across category](https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/size_strategy.png) ![Size vs Ratings across Category](https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/size_category.png)
 From the scatter-histogram, it becomes evident that a large number of the apps are less than 20 Mb and more than 50% of them have the ratings of 4 and above. It appears that the apps tend to keep themselves to the light weight rather than being bulky.
 
 
