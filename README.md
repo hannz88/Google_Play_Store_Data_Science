@@ -79,7 +79,7 @@ From the scatter-histogram, it becomes evident that a large number of the apps a
 
 ### What is the pricing strategy?
 <p align="center">
-    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/Pricing_apps.png" alt="Difference in Price stragety">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/Pricing_apps.png" alt="Difference in Price strategy" height="50%" width="50%">
 </p>
 <p align="center">
     <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/price_each_category.png" alt="Price for each category">
@@ -181,3 +181,4 @@ kruskal_effect_size(h = s, n=n, k=k)
 ```
 Kruskal-Wallis test showed that there is a significant difference among the ratings of different categories (p-value < 0, H-value = 291.97) but the effect is weak (eta-squared = 0.03).
 
+## Sentiment analysis
