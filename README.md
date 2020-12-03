@@ -42,7 +42,7 @@ On top of that, some of values are missing, which makes it difficult to perform 
 One of basics before running analysis is to analyse the correlations between the variables. The following is a correlation matrix between the variables:
 
 <p align="center">
-    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/correlation_matrix.png" alt="Correlation matrix of the variables" height="50%" width="50%">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/correlation_matrix.png" alt="Correlation matrix of the variables" height="70%" width="70%">
 </p>
 
 It's shown that "Installs" and "Reviews" have medium, positive correlation with each other. When I applied Pearson's r, it appears that they are significant with p-value < 0. Everything else had virtually weak to no correlation.
