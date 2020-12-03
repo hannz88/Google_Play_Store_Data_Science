@@ -21,6 +21,7 @@ This a side-project using 2018 Google Play Store data available on Kaggle. The o
 - [Data visualisation and analysis](#data-visualisation-and-analysis)
 - [Statistical analysis](#statistical-analysis)
 - [Sentiment analysis](#sentiment-analysis)
+- [Conclusion](#conclusion)
 - [Machine learning](#machine-learning)
 
 ## Data cleaning
@@ -195,3 +196,14 @@ Negative words associated with Free Apps are **problem**, **bad**, and **fix** w
 
 In terms of sentiment polarity, there doesn't seem to be a difference between Free and Paid apps as there are a lot of overlap. However, there seems to be more negative reviews for Free Apps which are marked as outliers.
 
+## Conclusion
+In short, the findings are:
+- users seem to tend to prefer light-weight app, judging by the higher ratings
+- Top-rated apps tend to be less than 40 Mb
+- Having said that, this doesn't seem to apply to Game apps
+- Free apps are more popular than Paid apps (that's a no-brainer, tbh; still, I proved it with stats!)
+- There is a difference in ratings across the categories, albeit a small one.
+- Users seem to merciless when reviewing Free Apps
+
+## Machine Learning
+(in progress)
