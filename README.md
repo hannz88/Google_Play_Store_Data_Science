@@ -185,3 +185,13 @@ Kruskal-Wallis test showed that there is a significant difference among the rati
 The data also comes with a dataset documenting the reviews of users for some apps. We'll go ahead and pull out the most common words for Free vs Paid apps.
 
 <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/free_word_cloud.png" width="400"/> <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/paid_word_cloud.png" width="400"/> 
+<p align="center">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/sentiment_polarity_distribution.png" alt="Distribution of Sentiment Polarity">
+</p>
+
+Positive words associated with Free Apps are **free**, **love**, **great**, and **good** while positive words associated with Paid Apps are **great**, **easy**, and **cute**.
+
+Negative words associated with Free Apps are **problem**, **bad**, and **fix** while negative words associated with Paid Apps are **issue** and **problem**.
+
+In terms of sentiment polarity, there doesn't seem to be a difference between Free and Paid apps as there are a lot of overlap. However, there seems to be more negative reviews for Free Apps which are marked as outliers.
+
