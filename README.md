@@ -18,7 +18,7 @@ This a side-project using 2018 Google Play Store data available on Kaggle. The o
 ## Table of content
 
 - [Data cleaning](#data-cleaning)
-- [Data visualisation](#data-visualisation)
+- [Data visualisation and analysis](#data-visualisation-and-analysis)
 - [Statistical analysis](#statistical-analysis)
 - [Machine learning](#machine-learning)
 
@@ -36,3 +36,41 @@ On top of that, some of values are missing, which makes it difficult to perform 
 <p align="center">
     <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/EDA.png" alt="Exploratory Analysis of the variables of interest">
 </p>
+
+## Data visualisation
+One of basics before running analysis is to analyse the correlations between the variables. The following is a correlation matrix between the variables:
+
+<p align="center">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/correlation_matrix.png" alt="Correlation matrix of the variables">
+</p>
+
+It's shown that "Installs" and "Reviews" have medium, positive correlation with each other. When I applied Pearson's r, it appears that they are significant with p-value < 0. Everything else had virtually weak to no correlation.
+
+Next, I used data visualisations to answer some of the questions and trends.
+
+### What's the market breakdown?
+<p align="center">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/market_breakdown.png" alt="Breakdown of the market">
+</p>
+
+From the pie chart, we could see that Game apps has a large part in the market. This is then followed by Communication and Tools.
+
+### What is the distribution of ratings across different category?
+<p align="center">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/violinplot.png" alt="Violin plot of ratings across category">
+</p>
+
+From the violin plot, a few things could be seen:
+
+- Apps in the categories of Business, Dating, Medical and Tools have a large variance in ratings.
+- More than 50% of Apps in Art and Design, Books and Reference, Education, Events and Tools have higher than average ratings.
+- More than 50% of Apps in Dating have lower than average ratings.
+
+### What is the size strategy?
+
+![Size strategy across category](https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/size_strategy.png) ![Size vs Ratings across Category](https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/size_category.png)
+From the scatter-histogram, it becomes evident that a large number of the apps are less than 20 Mb and more than 50% of them have the ratings of 4 and above. It appears that the apps tend to keep themselves to the light weight rather than being bulky.
+
+
+
+
