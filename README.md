@@ -20,6 +20,7 @@ This a side-project using 2018 Google Play Store data available on Kaggle. The o
 - [Data cleaning](#data-cleaning)
 - [Data visualisation and analysis](#data-visualisation-and-analysis)
 - [Statistical analysis](#statistical-analysis)
+- [Sentiment analysis](#sentiment-analysis)
 - [Machine learning](#machine-learning)
 
 ## Data cleaning
@@ -67,10 +68,116 @@ From the violin plot, a few things could be seen:
 - More than 50% of Apps in Dating have lower than average ratings.
 
 ### What is the size strategy?
-<img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/size_strategy.png" width="400"/> <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/size_category.png" width="400"/> 
+<p align="center">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/size_strategy.png" alt="Difference in size strategy">
+</p>
+<p align="center">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/size_category.png" alt="Size for each category">
+</p>
 
-From the scatter-histogram, it becomes evident that a large number of the apps are less than 20 Mb and more than 50% of them have the ratings of 4 and above. It appears that the apps tend to keep themselves to the light weight rather than being bulky.
+From the scatter-histogram, it becomes evident that a large number of the apps are less than 20 Mb and more than 50% of them have the ratings of 4 and above. It appears that the apps tend to keep themselves to the light weight rather than being bulky. From the scatter plot, it appears that apps from Game, Family and/or Medical tend to be pretty wide-spread in regards to size. However, these apps also seem to be pretty well-received as they have ratings of 3.5 and above. Parenting, Tools and Video players app appear to be smaller in size as they are mostly 40Mb and below but in terms of ratings, it appears that they tend to be between the range of 3.0 to 4.5.
 
+### What is the pricing strategy?
+<p align="center">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/Pricing_apps.png" alt="Difference in Price stragety">
+</p>
+<p align="center">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/price_each_category.png" alt="Price for each category">
+</p>
 
+From the pie chart, only 7.8% of the Apps are in the Paid category. Out of the paid category, more than 50% of them are $100 and below. Somebody expressed their suprise that Game apps are less than $100. A gamer would understand that the companies do not earn their revenue through the sales of the app but the in-app purchases. Furthermore, only 10 apps are above $100. Let's take a look at them.
 
+<p align="center">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/I_am_rich.png" alt="I am rich apps">
+</p>
+
+When looking at those expensive apps, I am legit shooketh. Smh. Wikipedia claimed that the "I am rich" apps were apparently "a work of art with no hidden function at all" and their creation was for no other reason than to show off that they could afford it. In other words, they are just flexing that they're rich. Why tho??
+
+<p align="center">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/rich.gif" alt="Make it rain gif">
+</p>
+
+## Statistical analysis
+Given the data, there are two questions that I'm curious about and decided to test them. 
+
+1) Is there a difference in popularity between Free and Paid apps?
+2) Is there a difference in ratings between the different categories?
+
+### Is there a difference in popularity between Free and Paid apps?
+To answer this question, I used "Installs" as a measurement. The reason is simply that if an app is popular it is more likely to get spread by word-of-mouth. First, let's do a quick exploratory analysis of the difference between Free and Paid
+
+<p align="center">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/boxplot_free_paid.png" alt="Boxplot to compare popularity between free and paid">
+</p>
+
+Given that the boxplot of the number of downloads appear to have some overlap, it might still have a significant difference between the different types. We could use a variant of t-test to test the differences. I performed levene's test and shapiro-wilk's test for homogeneity of variance and normality respectively. The results showed that both assumptions are violated (both p-values < 0.05).
+
+```
+# levene's test
+from scipy.stats import levene
+x = store_df.loc[store_df["Type"]=="Free", "Installs_log"]
+y = store_df.loc[store_df["Type"]=="Paid", "Installs_log"]
+s, p = levene(x,y)
+p
+>>> 1.3113456031787633e-20
+
+# shapiro-wilk's test
+from scipy.stats import shapiro
+s,p = stats.shapiro(x)
+>>> 4.021726592612225e-43
+```
+
+The homogeneity of variance and normality are violated, so student t-test is not advisable. So, an unpaired, non-parametric test should be used. Under these conditions, Mann whitney test is probably the most appropriate. In general, Mann Whitney's assumptions are:
+
+- observations from both groups are independent from each other
+- responses are at least ordinal (ie, you can say which is higher)
+
+Since the assumptions are met, we'll go ahead and use the test.
+
+```
+# Mann-Whitney
+from scipy.stats import mannwhitneyu
+stats.mannwhitneyu(x,y)
+>>> MannwhitneyuResult(statistic=1685312.5, pvalue=1.2531215783547303e-116)
+```
+
+We can reject the null hypothesis that the sample distributions are equal between the groups (p-value < 0.05, U= 1685312.5)
+
+### Is there a difference in ratings between the different categories?
+
+Given that there are multiple levels (aka multiple categories within an independent variable), I decided to use One-way ANOVA at first. However, the residuals did not meet the assumption of normality as visible from the QQ plot of the residuals.  
+
+<p align="center">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/qqplot_of_residuals.png" alt="Residuals QQ plot">
+</p>
+
+Then, I tried log transformation but it did not help either. Therefore, I decided to use non-parametric test, specifically Kruskal-Wallis test.  Before we conduct Kruskal-Wallis test, there are a few assumptions that are needed to be met:
+
+1) Samples drawn are random 
+2) Observations are independent
+
+Both of these assumptions are met because each app is a unique entry so they are independent of each other. Note: Scipy does not have a function that will give you the effect size of Kruskal-Wallis test but it's easy to obtain it using the s-value from the test. 
+
+```
+# Kruskal-Wallis test
+from scipy import stats
+s, p = stats.kruskal(*[group["Ratings_imp"].values for name, group in store_df.groupby("Category")])
+>>> 291.9695989365334 9.87269222844556e-44
+
+# Effect size
+def kruskal_effect_size(h, n, k):
+    """
+    Return the effect size of Kruskal-Wallis test.
+    H = H-value of statistics of Kruskal-Wallis
+    n = number of observations
+    k = number of groups
+    The formulas is from Tomczak and Tomczak (2014)
+    """
+    return h * (n+1)/(n**2 - 1)
+n = len(store_df)   
+k = len(store_df["Category"].unique())
+kruskal_effect_size(h = s, n=n, k=k)
+>>> 0.03022772532731477
+```
+Kruskal-Wallis test showed that there is a significant difference among the ratings of different categories (p-value < 0, H-value = 291.97) but the effect is weak (eta-squared = 0.03).
 
