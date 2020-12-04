@@ -111,7 +111,7 @@ To answer this question, I used "Installs" as a measurement. The reason is simpl
     <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/boxplot_free_paid.png" alt="Boxplot to compare popularity between free and paid">
 </p>
 
-Given that the boxplot of the number of downloads appear to have some overlap, it might still have a significant difference between the different types. We could use a variant of t-test to test the differences. I performed levene's test and shapiro-wilk's test for homogeneity of variance and normality respectively. The results showed that both assumptions are violated (both p-values < 0.05).
+Given that the boxplot of the number of downloads appear to have some overlap, it might still have a significant difference between the different types. We could use a variant of t-test to test the differences. I performed **levene's test** and **shapiro-wilk's test** for homogeneity of variance and normality respectively. The results showed that both assumptions are violated (both p-values < 0.05).
 
 ```
 # levene's test
@@ -128,7 +128,7 @@ s,p = stats.shapiro(x)
 >>> 4.021726592612225e-43
 ```
 
-The homogeneity of variance and normality are violated, so student t-test is not advisable. So, an unpaired, non-parametric test should be used. Under these conditions, Mann whitney test is probably the most appropriate. In general, Mann Whitney's assumptions are:
+The homogeneity of variance and normality are violated, so **student t-test** is not advisable. So, an unpaired, non-parametric test should be used. Under these conditions, **Mann whitney test** is probably the most appropriate. In general, Mann Whitney's assumptions are:
 
 - observations from both groups are independent from each other
 - responses are at least ordinal (ie, you can say which is higher)
@@ -146,13 +146,13 @@ We can reject the null hypothesis that the sample distributions are equal betwee
 
 ### Is there a difference in ratings between the different categories?
 
-Given that there are multiple levels (aka multiple categories within an independent variable), I decided to use One-way ANOVA at first. However, the residuals did not meet the assumption of normality as visible from the QQ plot of the residuals.  
+Given that there are multiple levels (aka multiple categories within an independent variable), I decided to use **One-way ANOVA** at first. However, the residuals did not meet the assumption of normality as visible from the QQ plot of the residuals.  
 
 <p align="center">
     <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/qqplot_of_residuals.png" alt="Residuals QQ plot">
 </p>
 
-Then, I tried log transformation but it did not help either. Therefore, I decided to use non-parametric test, specifically Kruskal-Wallis test.  Before we conduct Kruskal-Wallis test, there are a few assumptions that are needed to be met:
+Then, I tried log transformation but it did not help either. Therefore, I decided to use non-parametric test, specifically **Kruskal-Wallis test**.  Before we conduct Kruskal-Wallis test, there are a few assumptions that are needed to be met:
 
 1) Samples drawn are random 
 2) Observations are independent
