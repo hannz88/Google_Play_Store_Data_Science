@@ -206,4 +206,4 @@ In short, the current findings are:
 - Users seem to merciless when reviewing Free Apps
 
 ## Machine Learning
-(in progress)
+In order to keep this page short (well, I tried), I've split the machine learning part into a separate [page](https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Machine_learning.md)
