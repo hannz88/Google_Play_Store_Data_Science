@@ -33,6 +33,12 @@ The app dataset contains 10841 rows with 13 columns. However, some rows are dupl
 - `Installs`: Ratio data. The number of downloads.
 - `Price`: Technically a numerical data with true zero which makes it ratio but in the dataset, it acts more like an interval data. The price of the app.
 
+Here's a preview of the data prior to cleaning:
+
+<p align="center">
+    <img src="https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Graphs/preview.png" alt="Preview of the data prior to cleaning">
+</p>
+
 On top of that, some of values are missing, which makes it difficult to perform downstream analysis and machine learning. For a few of the entries, the missing values (mv) were due to web-scrapping error and it was easy to fix by replacing the mv with the data available online. For a lot of them however, it was too much to gather information separately especially when Google Play Store does not provide API access. In order to avoid massive loss of information, I decided to impute some of the missing values.  A lot of the variables have skewed distribution. I decided not to use mean replacement which was commonly used as I felt that this would distort the relationship between the variables. Instead, I'm going to impute using a method from sklearn that mimics missForest in R. We're using IterativeImputer with ExtraTreesRegressor to mimic missForest in R. missForest imputes mising data using mean/mode first then for each variable with mv, it fits random forest and imputes the missing part. It does not assumes normality which is great as the distribution is obviously anything but, as can be seen on the exploratory visualisation below.
 
 <p align="center">
