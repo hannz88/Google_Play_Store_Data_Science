@@ -11,6 +11,14 @@ This is a continuation of the Data Science project using the Google Play Store d
 - Model training
 - Hyperparameter tuning
 
+## Table of Content
+
+- [Recap](#recap)
+- [Feature selection](#feature-selection)
+- [Model selection](#model-selection)
+- [RandomForestRegressor with Dummy Variables](#RandomForestRegressor-with-dummy-variables)
+- [Conclusion](#conclusion)
+
 ## Recap
 The data was scrapped from 2018 Google Play Store. There were missing values as well as incorrect entries originally. I corrected the incorrect entries and imputed the missing values using `ExtraTreeRegressor` to mimic `miss Forest`, a commonly used package in R. Click [here](https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/README.md) to see how I cleaned them in details and [here](https://github.com/hannz88/Google_Play_Store_Data_Science/blob/main/Android%20app%20sales.ipynb) for the graphical outputs and statistical analysis.
 
